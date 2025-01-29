@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Abdulwadud Adams - Medical Consultant</title>
+    <style>
+        :root {
+            --primary: #2A5C82;
+            --accent: #32B0CD;
+            --dark: #1A2B3C;
+            --light: #F5F9FC;
+            --neon-blue: #00f3ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        /* Updated Profile Header */
+        .profile-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+        }
+
+        /* Updated Profile Frame Styles */
+        .photo-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .photo-container::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--accent), var(--primary));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 1;
+            animation: rotate 4s linear infinite;
+        }
+
+        .photo-container::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            z-index: 0;
+            filter: blur(10px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Add Shine Effect */
+        .profile-photo:hover {
+            animation: shine 1.5s;
+        }
+
+        @keyframes shine {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+            100% { filter: brightness(1); }
+        }
+
+        /* Contact Card */
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            margin: 0.5rem 0;
+        }
+
+        .emergency-badge {
+            background: rgba(255, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: inline-block;
+            border: 1px solid rgba(255, 0, 0, 0.5);
+        }
+
+        /* Experience Timeline */
+        .experience-timeline {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .experience-timeline h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .hospital-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            background: var(--light);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hospital-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .hospital-logo {
+            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .credential-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+
+        /* Work Gallery */
+        .work-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-photo {
+                margin: 0 auto;
+            }
+
+            .hospital-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="photo-container">
+            <img src="your-photo.jpg" alt="Dr. Abdulwadud Adams" class="profile-photo">
+        </div>
+        <div class="contact-card">
+            <h1>Dr. Abdulwadud Adams</h1>
+            <p class="title"> Medical Consultant</p>
+            <div class="contact-info">
+                <p>📞 +252 634 321 411</p>
+                <p>✉️ abduladamhasan12@gmai.com</p>
+            </div>
+            <div class="emergency-badge">
+                 24/7  Services Available
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="experience-timeline">
+        <h2>dhakhtaradan ka shaqeeyay waxa kamida</h2>
+        <div class="hospital-card">
+            <div class="hospital-logo">🏥</div>
+            <div>
+                <h3>Masaka Regional Referral Hospital</h3>
+                <p>2022-2023</p>
+                <p>ka hortagga xanuunada faafa • Improved patient care protocols</p>
+            </div>
+        </div>
+        <div class="hospital-card">
+            <div class="hospital-logo">🏥</div>
+            <div>
+                <h3>Kayunga Regional Hospital</h3>
+                <p>2023-2024</p>
+                <p>cudurada uur kujirta •khibrad ban ka qatay</p>
+            </div>
+        </div>
+        <div class="hospital-card">
+            <div class="hospital-logo">🏥</div>
+            <div>
+                <h3>Mubende Regional Referral Hospital</h3>
+                <p>2024-Present</p>
+                <p>xanuunada haweenka ku dhaca • </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>My Medical Philosophy</h2>
+        <p>[Waxaan aaminsanahay in daryeelka caafimaadku uu yahay xuquuq aasaasi ah oo qof kasta uu mudan yahay. Daaweyntu waa in aysan kaliya xakamayn xanuunka, balse ay kor u qaaddo tayada nolosha bukaanka. Waxaan xoogga saaraa daaweyn cilmi ku dhisan, naxariis leh, iyo horumarin joogto ah si aan u hubiyo in bukaankaygu helaan daryeel caafimaad oo heer sare ah. Caafimaadku maaha shaqo kaliya, waa ballanqaad aan u hayo bulshada.]</p>
+        <div class="credentials">
+            <div class="credential-item">🎓 dhakhtarka cudurada guud</div>
+            <div class="credential-item">📜 dhakhtarka haweenka iyo caruurta</div>
+        </div>
+    </section>
+
+    <!-- Work Gallery -->
+    <section class="work-gallery">
+        <div class="gallery-item">Add hospital photo</div>
+        <div class="gallery-item">Add conference photo</div>
+        <div class="gallery-item">Add team photo</div>
+    </section>
+</body>
+</html>
