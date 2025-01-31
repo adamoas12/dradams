@@ -1,280 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Abdulwadud Adams - Medical Consultant</title>
-    <style>
-        :root {
-            --primary: #2A5C82;
-            --accent: #32B0CD;
-            --dark: #1A2B3C;
-            --light: #F5F9FC;
-            --neon-blue: #00f3ff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Abdulwadud Adams - Medical Consultant</title>
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* CSS Variables */
+    :root {
+      --primary: #07a33b;
+      --accent: #129031;
+      --dark: #1A2B3C;
+      --light: #eef6f1;
+      --neon: #ab4b31;
+      --white: #fff;
+      --transition-speed: 0.3s;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-        body {
-            background: var(--light);
-            color: var(--dark);
-        }
+    body {
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+      scroll-behavior: smooth;
+    }
 
-        /* Updated Profile Header */
-        .profile-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            padding: 4rem 2rem;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            color: white;
-        }
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: var(--dark);
+      color: var(--white);
+    }
+    body.dark-mode .navbar,
+    body.dark-mode .hero,
+    body.dark-mode .section-title {
+      background: #142034;
+    }
+    body.dark-mode .experience-card,
+    body.dark-mode .contact-card {
+      background: #1f2a40;
+    }
+    body.dark-mode a {
+      color: var(--accent);
+    }
 
-        /* Updated Profile Frame Styles */
-        .photo-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .navbar a {
+      color: var(--white);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color var(--transition-speed) ease;
+    }
+    .navbar a:hover {
+      color: var(--accent);
+    }
+    .navbar .nav-links {
+      display: flex;
+      align-items: center;
+    }
 
-        .profile-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            position: relative;
-            z-index: 2;
-            animation: float 6s ease-in-out infinite;
-        }
+    /* Dark Mode Toggle Button */
+    .theme-toggle {
+      background: var(--accent);
+      border: none;
+      color: var(--white);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background var(--transition-speed) ease;
+    }
+    .theme-toggle:hover {
+      background: var(--primary);
+    }
 
-        .photo-container::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--accent), var(--primary));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            z-index: 1;
-            animation: rotate 4s linear infinite;
-        }
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      margin-top: 70px;
+      background: linear-gradient(135deg, rgba(34, 121, 18, 0.6), rgba(19, 177, 58, 0.3));
+      border-radius: 0 0 15px 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: var(--white);
+    }
+    .hero .profile-photo-container {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      margin: 1rem;
+    }
+    .hero .profile-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      position: relative;
+      z-index: 2;
+      animation: float 6s ease-in-out infinite;
+      border: 4px solid var(--white);
+    }
+    .hero .profile-photo-container::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      background: linear-gradient(45deg, var(--neon), var(--accent), var(--primary));
+      clip-path: inherit;
+      z-index: 1;
+      animation: rotate 4s linear infinite;
+    }
+    .hero .profile-photo-container::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      clip-path: inherit;
+      z-index: 0;
+      filter: blur(8px);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .hero .profile-info {
+      max-width: 500px;
+      margin: 1rem;
+    }
+    .hero .profile-info h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero .profile-info p {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+    .hero .social-media {
+      margin-top: 1.2rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .hero .social-media a {
+      font-size: 1.5rem;
+      transition: transform var(--transition-speed) ease;
+    }
+    .hero .social-media a:hover {
+      transform: translateY(-3px);
+    }
 
-        .photo-container::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            z-index: 0;
-            filter: blur(10px);
-        }
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 2rem;
+      border-radius: 10px;
+      margin: 2rem auto 1rem;
+      max-width: 800px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+    /* About Section */
+    .about-section {
+      padding: 2rem;
+      margin: 0 auto 2rem;
+      max-width: 900px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .about-section p {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+    .credentials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .credential {
+      background: var(--accent);
+      padding: 0.8rem 1rem;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+    /* Experience Section */
+    .experience-section {
+      padding: 2rem;
+      background: var(--light);
+    }
+    .experience-card {
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform var(--transition-speed) ease;
+    }
+    .experience-card:hover {
+      transform: translateY(-5px);
+    }
+    .experience-card .icon {
+      font-size: 3rem;
+    }
+    .experience-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.5rem;
+    }
+    .experience-card p {
+      margin: 0.2rem 0;
+    }
 
-        /* Add Shine Effect */
-        .profile-photo:hover {
-            animation: shine 1.5s;
-        }
+    /* Gallery Section */
+    .gallery-section {
+      padding: 2rem;
+      background: var(--light);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform var(--transition-speed) ease;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 
-        @keyframes shine {
-            0% { filter: brightness(1); }
-            50% { filter: brightness(1.2); }
-            100% { filter: brightness(1); }
-        }
+    /* Modal for Gallery */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1500;
+      padding: 1rem;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+    .modal .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
+    }
 
-        /* Contact Card */
-        .contact-card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
+    /* Contact Section */
+    .contact-section {
+      padding: 2rem;
+      background: var(--primary);
+      color: var(--white);
+      text-align: center;
+    }
+    .contact-card {
+      background: var(--white);
+      color: var(--dark);
+      max-width: 600px;
+      margin: 1rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .contact-card h2 {
+      margin-bottom: 1rem;
+    }
+    .contact-card p {
+      margin: 0.5rem 0;
+      font-size: 1.1rem;
+    }
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-        .contact-card h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
 
-        .contact-card p {
-            margin: 0.5rem 0;
-        }
-
-        .emergency-badge {
-            background: rgba(255, 0, 0, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-            display: inline-block;
-            border: 1px solid rgba(255, 0, 0, 0.5);
-        }
-
-        /* Experience Timeline */
-        .experience-timeline {
-            padding: 4rem 2rem;
-            background: white;
-        }
-
-        .experience-timeline h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--dark);
-        }
-
-        .hospital-card {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 2rem;
-            padding: 2rem;
-            margin: 2rem 0;
-            background: var(--light);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .hospital-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .hospital-logo {
-            font-size: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 4rem 2rem;
-            background: var(--dark);
-            color: white;
-        }
-
-        .about-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .credentials {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .credential-item {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 5px;
-        }
-
-        /* Work Gallery */
-        .work-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            padding: 2rem;
-        }
-
-        .gallery-item {
-            height: 250px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        @media (max-width: 768px) {
-            .profile-header {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .profile-photo {
-                margin: 0 auto;
-            }
-
-            .hospital-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-    </style>
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero .profile-info h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Profile Header -->
-    <section class="profile-header">
-        <div class="photo-container">
-            <img src="your-photo.jpg" alt="Dr. Abdulwadud Adams" class="profile-photo">
-        </div>
-        <div class="contact-card">
-            <h1>Dr. Abdulwadud Adams</h1>
-            <p class="title"> Medical Consultant</p>
-            <div class="contact-info">
-                <p>📞 +252 634 321 411</p>
-                <p>✉️ abduladamhasan12@gmai.com</p>
-            </div>
-            <div class="emergency-badge">
-                 24/7  Services Available
-            </div>
-        </div>
-    </section>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <a href="#hero"><strong>Dr. Adams</strong></a>
+    </div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </div>
+  </nav>
 
-    <!-- Professional Experience -->
-    <section class="experience-timeline">
-        <h2>dhakhtaradan ka shaqeeyay waxa kamida</h2>
-        <div class="hospital-card">
-            <div class="hospital-logo">🏥</div>
-            <div>
-                <h3>Masaka Regional Referral Hospital</h3>
-                <p>2022-2023</p>
-                <p>ka hortagga xanuunada faafa • Improved patient care protocols</p>
-            </div>
-        </div>
-        <div class="hospital-card">
-            <div class="hospital-logo">🏥</div>
-            <div>
-                <h3>Kayunga Regional Hospital</h3>
-                <p>2023-2024</p>
-                <p>cudurada uur kujirta •khibrad ban ka qatay</p>
-            </div>
-        </div>
-        <div class="hospital-card">
-            <div class="hospital-logo">🏥</div>
-            <div>
-                <h3>Mubende Regional Referral Hospital</h3>
-                <p>2024-Present</p>
-                <p>xanuunada haweenka ku dhaca • </p>
-            </div>
-        </div>
-    </section>
+  <!-- Hero / Profile Header Section -->
+  <section id="hero" class="hero">
+    <div class="profile-photo-container">
+      <img class="profile-photo" src="https://raw.githubusercontent.com/adamoas12/adamo/main/2023-01-17%2018.29.01.jpg" alt="Dr. Abdulwadud Adams" />
+    </div>
+    <div class="profile-info">
+      <h1>Dr. Abdulwadud Adams</h1>
+      <p class="title">Medical Consultant</p>
+      <p>📞 +252 634 321 411 &nbsp;&bull;&nbsp; ✉️ abduladamhasan12@gmai.com</p>
+      <div class="social-media">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <p style="margin-top:1rem; font-style: italic;">24/7 Services Available</p>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section class="about-section">
-        <h2>My Medical Philosophy</h2>
-        <p>[Waxaan aaminsanahay in daryeelka caafimaadku uu yahay xuquuq aasaasi ah oo qof kasta uu mudan yahay. Daaweyntu waa in aysan kaliya xakamayn xanuunka, balse ay kor u qaaddo tayada nolosha bukaanka. Waxaan xoogga saaraa daaweyn cilmi ku dhisan, naxariis leh, iyo horumarin joogto ah si aan u hubiyo in bukaankaygu helaan daryeel caafimaad oo heer sare ah. Caafimaadku maaha shaqo kaliya, waa ballanqaad aan u hayo bulshada.]</p>
-        <div class="credentials">
-            <div class="credential-item">🎓 dhakhtarka cudurada guud</div>
-            <div class="credential-item">📜 dhakhtarka haweenka iyo caruurta</div>
-        </div>
-    </section>
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="section-title">My Medical Philosophy</div>
+    <p>
+      Waxaan aaminsanahay in daryeelka caafimaadku uu yahay xuquuq aasaasi ah oo qof kasta uu mudan yahay.
+      Daaweyntu waa in aysan kaliya xakamayn xanuunka, balse ay kor u qaaddo tayada nolosha bukaanka.
+      Waxaan xoogga saaraa daaweyn cilmi ku dhisan, naxariis leh, iyo horumarin joogto ah si aan u hubiyo in
+      bukaankaygu helaan daryeel caafimaad oo heer sare ah.
+    </p>
+    <div class="credentials">
+      <div class="credential">🎓 Dhakhtarka Cudurada Guud</div>
+      <div class="credential">📜 Dhakhtarka Haweenka & Caruurta</div>
+    </div>
+  </section>
 
-    <!-- Work Gallery -->
-    <section class="work-gallery">
-        <div class="gallery-item">Add hospital photo</div>
-        <div class="gallery-item">Add conference photo</div>
-        <div class="gallery-item">Add team photo</div>
-    </section>
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="section-title">Professional Experience</div>
+    <div class="experience-card">
+      <div class="icon">🏥</div>
+      <div>
+        <h3>Masaka Regional Referral Hospital</h3>
+        <p><strong>2022-2023</strong></p>
+        <p>Ka hortagga xanuunada faafa &bullet; Improved patient care protocols</p>
+      </div>
+    </div>
+    <div class="experience-card">
+      <div class="icon">🏥</div>
+      <div>
+        <h3>Kayunga Regional Hospital</h3>
+        <p><strong>2023-2024</strong></p>
+        <p>Cudurada uur kujirta &bullet; Khibrad ballaaran oo la qaatay</p>
+      </div>
+    </div>
+    <div class="experience-card">
+      <div class="icon">🏥</div>
+      <div>
+        <h3>Mubende Regional Referral Hospital</h3>
+        <p><strong>2024-Present</strong></p>
+        <p>Xanuunada haweenka ku dhaca</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery-section">
+    <div class="section-title">Work Gallery</div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Gallery items will be dynamically injected here -->
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-title" style="background: var(--accent);">Contact</div>
+    <div class="contact-card">
+      <h2>Get in Touch</h2>
+      <p>For appointments or inquiries, please call or email.</p>
+      <p>📞 <a href="tel:+252634321411">+252 634 321 411</a></p>
+      <p>✉️ <a href="mailto:abduladamhasan12@gmai.com">abduladamhasan12@gmai.com</a></p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Dr. Abdulwadud Adams. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Modal for Gallery -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <span class="close-modal" onclick="closeModal(event)">&times;</span>
+    <img id="modalImg" src="" alt="Gallery Full Image" />
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Theme Toggle Function
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const toggleBtn = document.querySelector('.theme-toggle');
+      toggleBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌓';
+    }
+
+    // Gallery Images – update URLs as needed
+    const galleryImages = [
+      "https://raw.githubusercontent.com/adamoas12/adamo/main/2023-03-28%2019.20.15.jpg",
+      "https://raw.githubusercontent.com/yourusername/yourrepository/main/conference.jpg",
+      "https://raw.githubusercontent.com/yourusername/yourrepository/main/team.jpg",
+      "https://raw.githubusercontent.com/yourusername/yourrepository/main/office.jpg",
+      "https://raw.githubusercontent.com/yourusername/yourrepository/main/meeting.jpg"
+    ];
+
+    const galleryGrid = document.getElementById("galleryGrid");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+
+    // Populate Gallery
+    galleryImages.forEach(src => {
+      const div = document.createElement("div");
+      div.className = "gallery-item";
+      div.innerHTML = `<img src="${src}" alt="Gallery Image" onclick="openModal('${src}', event)">`;
+      galleryGrid.appendChild(div);
+    });
+
+    // Open Modal
+    function openModal(src, event) {
+      event.stopPropagation();
+      modal.style.display = "flex";
+      modalImg.src = src;
+    }
+
+    // Close Modal
+    function closeModal(e) {
+      if (e) e.stopPropagation();
+      modal.style.display = "none";
+    }
+
+    // Close modal on Escape key press
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
